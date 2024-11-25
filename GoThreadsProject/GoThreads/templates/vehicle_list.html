@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle List</title>
+</head>
+<body>
+    <h1>All Vehicles</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Car Model</th>
+                <th>Year of Manufacture</th>
+                <th>Price</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.car_model }}</td>
+                <td>{{ vehicle.year_of_manufacture }}</td>
+                <td>${{ vehicle.price }}</td>
+                <td>{{ vehicle.car_company.company_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Companies</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .company-logo {
+            width: 50px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medical Companies</h1>
+
+    {% if medical_companies %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Location</th>
+                    <th>Rating</th>
+                    <th>Phone</th>
+                    <th>Opening Time</th>
+                    <th>Closing Time</th>
+                    <th>Logo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for company in medical_companies %}
+                    <tr>
+                        <td>{{ company.company_name }}</td>
+                        <td>{{ company.location }}</td>
+                        <td>{{ company.rating|default:"N/A" }}</td>
+                        <td>{{ company.phone }}</td>
+                        <td>{{ company.open_time|time:"H:i" }}</td>
+                        <td>{{ company.close_time|time:"H:i" }}</td>
+                        <td>
+                            {% if company.profile_picture %}
+                                <img src="{{ company.profile_picture.url }}" alt="{{ company.company_name }}" class="company-logo">
+                            {% else %}
+                                No Logo
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">
+                            <strong>Doctors:</strong>
+                            <ul>
+                                {% for doctor in company.doctors.all %}
+                                    <li>
+                                        <strong>Name:</strong> Dr. {{ doctor.doctor_name }}<br>
+                                        <strong>Speciality:</strong> {{ doctor.speciality }}<br>
+                                        <strong>Education:</strong> {{ doctor.education|default:"N/A" }}<br>
+                                        <strong>Rating:</strong> {{ doctor.rating|default:"N/A" }}<br>
+                                        <strong>Visit Price:</strong> ${{ doctor.visit_price }}<br>
+                                        <strong>Phone:</strong> {{ doctor.phone }}
+                                    </li>
+                                {% empty %}
+                                    <li>No doctors available</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No medical companies available.</p>
+    {% endif %}
+</body>
+</html>

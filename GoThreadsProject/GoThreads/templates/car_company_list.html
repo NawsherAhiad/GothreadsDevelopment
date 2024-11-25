@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Company List</title>
+</head>
+<body>
+    <h1>All Car Companies</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Phone</th>
+                <th>Logo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car_company in car_companies %}
+            <tr>
+                <td>{{ car_company.company_name }}</td>
+                <td>{{ car_company.phone }}</td>
+                <td><img src="{{ car_company.profile_picture.url }}" alt="{{ car_company.company_name }}" width="50"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

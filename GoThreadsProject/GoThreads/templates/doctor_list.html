@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor List</title>
+</head>
+<body>
+    <h1>All Doctors</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Doctor Name</th>
+                <th>Speciality</th>
+                <th>Education</th>
+                <th>Rating</th>
+                <th>Visit Price</th>
+                <th>Medical Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.doctor_name }}</td>
+                <td>{{ doctor.speciality }}</td>
+                <td>{{ doctor.education }}</td>
+                <td>{{ doctor.rating }}</td>
+                <td>${{ doctor.visit_price }}</td>
+                <td>{{ doctor.medical_company.company_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
