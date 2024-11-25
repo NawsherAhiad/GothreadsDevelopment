@@ -1,0 +1,1 @@
+This project serves as a comprehensive platform that brings together a wide range of services, offering users an efficient and convenient way to access them all in one place. I used Django Framework for this. 
